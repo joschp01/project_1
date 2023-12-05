@@ -72,7 +72,15 @@ Summary: Beautiful Soup is a python package, which have methods that can help in
 ```
 [Source](https://pypi.org/project/beautifulsoup4/)
 
-To start using Beautiful Soup, all you need to do is add the following line in the Python module:
+To start using Beautiful Soup, first we must install the package that contains it. Execute the following command:
+
+```bash
+pip install beautifulsoup4
+# installs the beautifulsoup4 package
+# name of package is "bs4" when importing
+```
+
+Once it is installed, all you need to do to begin using beautiful soup is add the following line in the Python module:
 
 ```python
 from bs4 import BeautifulSoup
