@@ -47,3 +47,29 @@ These can offer clues into how to retrieve data from the website's database. The
 The webpage itself can be investigated, using developer tools. When on the target webpage, open the developer tools by pressing F12 in the browser of your choice. We will use Microsoft Edge for this project.
 
 The developer tools show the elements on the webpage in what is known as the Document Object Model (AKA "DOM"). The HTML elements shown are clickable, where one can expand, collapse, and even edit the element right on the browser. 
+
+In our project, we will analyze the URL https://realpython.github.io/fake-jobs/
+
+The following are some things we will consider regarding job postings:
+
+1. What HTML element are the job postings wrapped in?
+
+2. What other HTML elements are also contained?
+
+The job posting elements are contained within the "div" element with class = "container". The div element also contains "figures" and "images."
+
+To begin working with the webpage and getting the available data, we will use requests. To use requests, let us install the package. Be sure to activate your virtual environment, before executing the following:
+
+```bash
+pip install requests
+# installs requests
+```
+
+Using requests, we can grab the HTML content of the URL. We can then add this functionality to our application. An example of the command is as follows:
+
+```python
+URL = "https://realpython.github.io/fake-jobs/"
+page = requests.get(URL)
+print(page.text)
+```
+
