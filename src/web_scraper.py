@@ -52,18 +52,37 @@ class WebScraper:
         """
         sends a request to the URL, and captures the HTML content
 
-        returns the URL HTML content
+        returns the URL HTML content as a string
 
         Parameters:
         -----------
         none
         """
-        page = requests.get(self.URL)
+        response = requests.get(self.URL)
 
-        return page.text
+        return response
+    
+    def beautiful_soup(self, content):
+        """
+        Method that creates the Beautiful Soup object, from the content
+        attribute of the response from a request.get() command. The response
+        is parsed using the "html-parser" option from beautiful soup, 
+        which is appropriate for HTML content
+
+        returns the beautiful soup object
+
+        Parameters:
+        -----------
+        content : bytes
+            bytes object; derived from invoking the .content method on a URL
+            response object
+        """
+        return BeautifulSoup(content, "html-parser")
 
 inst = WebScraper("https://realpython.github.io/fake-jobs/", "")
 # inst.open_url()
 URL_HTML = inst.request_URL()
 print(type(URL_HTML))
+
+
 
