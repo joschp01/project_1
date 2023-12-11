@@ -1,0 +1,2 @@
+ - web_scraper.py -> solve create file problem:
+    OSError: [Errno 22] invalid argument
