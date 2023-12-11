@@ -14,13 +14,19 @@ import os
 import datetime
 
 from src.web_scraper import WebScraper
+# from ..src.web_scraper import WebScraper
 
 class TestWebScraper(unittest.TestCase):
+    URL = "https://realpython.github.io/fake-jobs/"
     def setUp(self):
-        print("Setting up TestWebScraper")        
+        print("Setting up TestWebScraper")
+        self.driver = webdriver.Chrome()
+        self.driver.get(self.URL)
+        self.scraper = WebScraper(driver = self.driver)
     
     def tearDown(self):
         print("Tearing down TestWebScraper")
+        self.driver.close()
 
     def test_01_save_scrape_data(self):
         """
@@ -39,9 +45,10 @@ class TestWebScraper(unittest.TestCase):
         temp.append("scrapes")
         scrape_directory = "\\".join(temp)
 
-        file_name = self.driver.title + datetime.datetime.today
+        print("This is self.driver.title: ", self.driver.title)
+        file_name = self.driver.title.replace(" ", "_") + "_" + str(datetime.date.today())
 
         file_directory = os.path.join(scrape_directory, file_name)
-
+        print("This is file_directory: ", file_directory)
         with open(file_directory, 'r') as file:
             self.assertEqual(content, file)
