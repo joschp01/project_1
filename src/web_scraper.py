@@ -10,6 +10,7 @@ import time
 import requests
 import os
 import datetime
+from datetime import date
 
 class WebScraper:
     """
@@ -124,23 +125,25 @@ class WebScraper:
         """
         current_directory = os.path.dirname(os.path.abspath(__file__))
         temp = current_directory.split("\\")
+        print("This is temp: ", temp)
         del temp[-1]
         temp.append("scrapes")
-        scrape_directory = "\\".join(temp)
+        scrape_directory = "/".join(temp)
+        # scrape_directory = scrape_directory.replace("/","\\")
 
         title_mod = title.replace(" ", "_")
-        new_file_time = str(datetime.datetime.today()).replace(" ", "_")
 
-        # file_name = f'{scrape_directory}\\{title_mod}_{new_file_time}.csv'
-        # print("This is file_name: ", file_name)
-        # file_name.replace("\\","\")
-        file_name = 'C:\\Users\\Josch\\Documents\\coding\\project_1\\scrapes\\Fake_Python_2023-12-10_17:16:26.881181.csv'
+        datetime_object_now = datetime.datetime.now()
 
-        new_file = open(r'C:\Users\Josch\Documents\coding\project_1\scrapes\Fake_Python_2023-12-10_17:16:26.881181.csv', "x")
-        new_file.close()
-        with open(new_file, "a") as file:
+        title_time_csv = title_mod + '_' + \
+            datetime_object_now.strftime("%d-%b-%Y_H%HM%MS%S") + ".csv"
+
+        print("This is title_time_csv: ", title_time_csv)
+
+        with open(scrape_directory+'/'+title_time_csv, "a") as file:
             file.write(f"{title}\n")
-            file.write(content)
+            file.write(datetime_object_now.strftime("%d-%b-%Y_H%HM%MS%S") + "\n\n")
+            file.write(str(content))
 
     def close_driver(self):
         self.driver.close()
