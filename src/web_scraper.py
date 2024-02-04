@@ -125,7 +125,7 @@ class WebScraper:
         """
         current_directory = os.path.dirname(os.path.abspath(__file__))
         temp = current_directory.split("\\")
-        print("This is temp: ", temp)
+        # print("This is temp: ", temp)
         del temp[-1]
         temp.append("scrapes")
         scrape_directory = "/".join(temp)
@@ -138,7 +138,7 @@ class WebScraper:
         title_time_csv = title_mod + '_' + \
             datetime_object_now.strftime("%d-%b-%Y_H%HM%MS%S") + ".csv"
 
-        print("This is title_time_csv: ", title_time_csv)
+        # print("This is title_time_csv: ", title_time_csv)
 
         with open(scrape_directory+'/'+title_time_csv, "a") as file:
             file.write(f"{title}\n")
@@ -154,11 +154,11 @@ URL = "https://realpython.github.io/fake-jobs/"
 driver = webdriver.Chrome()
 inst = WebScraper(URL = URL, driver = driver)
 
-response = inst.request_url()
-response_beautifulsoup_obj = inst.beautiful_soup_text(response.content)
+# response = inst.request_url()
+# response_beautifulsoup_obj = inst.beautiful_soup_text(response.content)
 
-title = inst.driver.title
-content = response.content
+# title = inst.driver.title
+# content = response.content
 
-inst.create_new_log_text(title, content)
+# inst.create_new_log_text(title, content)
 
